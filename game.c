@@ -3,9 +3,7 @@
 #include "tictactoe.h"
 #include "game.h"
 
-int main () {
-    GameStart();
+void GameStart() {
+    PrintGrid();
 
-
-    return 0;
 }

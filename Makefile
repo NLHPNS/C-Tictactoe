@@ -18,8 +18,8 @@ nosan: all
 .PHONY: all
 all: Tictactoe
 
-Tictactoe: main.c 
-	$(CC) $(CFLAGS) -o Tictactoe main.c tictactoe.c
+Tictactoe: main.c tictactoe.c tictactoe.h game.h game.c
+	$(CC) $(CFLAGS) -o Tictactoe main.c tictactoe.c game.c
 
 .PHONY: clean
 clean:

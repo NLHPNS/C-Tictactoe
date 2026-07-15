@@ -1,8 +1,10 @@
-#include <stdlib.h>
+#include <stdio.h>
 
-static void main () {
-    
+#include "tictactoe.h"
+
+int main () {
+    PrintGrid();
 
 
-    return;
+    return 0;
 }

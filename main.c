@@ -4,7 +4,9 @@
 #include "game.h"
 
 int main () {
-    GameStart();
+    GameIntro();
+    GameLoop();
+    // GameStart();
 
 
     return 0;

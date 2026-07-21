@@ -64,10 +64,12 @@ void GameLocal() {
             }
         } else if (strlen(input) == 2) {
             sscanf(input, "%c", &input_one);
-             if (toupper(input_one) == 'H') {
+            if (toupper(input_one) == 'H') {
                 PrintGrid(new_board);
                 
             }
+            printf("Invalid input, type 'H' for help.676767\n");
+            continue;
         } else {
             PrintGrid(new_board);
             printf("Invalid input, type 'H' for help.\n");

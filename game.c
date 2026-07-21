@@ -1,17 +1,12 @@
 #include <stdio.h>
-// #include <string.h>
+#include <string.h>
 #include <ctype.h>
 
 #include "tictactoe.h"
 #include "game.h"
 
-void GameStart() {
-    struct board *new_board = InitializeBoard();
-    PrintGrid(new_board);
-}
-
 void GameIntro() {
-    // printf("\033[2J\033[H"); // Clear the screen
+    printf("\033[2J\033[H"); // Clear the screen
     printf("\nWelcome to NL-Tictactoe!\n");
     printf("--------------------------------------------\n");
     printf("Please select game mode:\n");
@@ -23,10 +18,11 @@ void GameIntro() {
 
 void GameLoop() {
     char input;
+    int play = 0;
 
     while (scanf(" %c", &input) != EOF && input != 'q' && input != 'Q') {
         if (toupper(input) == 'A') {
-            GameLocal();
+            play = 1;
             break;
         } else if (toupper(input) == 'B') {
             GameIntro();
@@ -38,9 +34,50 @@ void GameLoop() {
         
         
     }
+
+    if (play == 1) {
+        fgetc(stdin);
+        GameLocal();
+    }
     printf("Game Quit.\n");
 }
 
 void GameLocal() {
-    printf("67676767\n");
+    struct board *new_board = InitializeBoard();
+    PrintGrid(new_board);
+
+    char input[STRMAX];
+    char input_one;
+    char input_two;
+
+    // input
+    while (1) {
+        fgets(input, STRMAX, stdin);
+        if (strlen(input) == 3) {   // A2\n \0
+            sscanf(input, "%c%c", &input_one, &input_two);
+            int place_return = PlaceMark(new_board, input_one, input_two);
+            PrintGrid(new_board);
+            if (place_return == 1) {
+                PrintGrid(new_board);
+                printf("Invalid input, type 'H' for help.67\n");
+                continue;
+            }
+        } else if (strlen(input) == 2) {
+            sscanf(input, "%c", &input_one);
+             if (toupper(input_one) == 'H') {
+                PrintGrid(new_board);
+                
+            }
+        } else {
+            PrintGrid(new_board);
+            printf("Invalid input, type 'H' for help.\n");
+            
+        }
+
+        
+    }
+
+
+    FreeBoard(new_board);
+
 }
